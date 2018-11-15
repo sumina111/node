@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/sumina111/node/issues"
   },
-  "homepage": "https://github.com/sumina111/node#readme"
+  "homepage": "https://github.com/sumina111/node#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
