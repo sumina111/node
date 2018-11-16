@@ -6,8 +6,9 @@ mongoose.connect('mongodb://localhost:3000/my_database');
 
 const listSchema = new schema({
     userName: String,
-    userDob: Date,
+    password: {type: String, required: true},
+    date: Date,
 });
 
-module.exports = db.model('List', listSchema);
+module.exports = mongoose.model('List', listSchema);
 
