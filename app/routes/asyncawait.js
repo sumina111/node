@@ -1,12 +1,24 @@
-var express = require("express");
-var router = express.Router();
-var responses= require("../controllers/asyncAwait");
+const express = require("express");
+const router = express.Router();
 
-router.post('/post', responses.create);
-router.get('/get', responses.findAll);
-router.get('/get/:id', responses.findOne);
-router.put('/update/:id', responses.update);
-router.delete('/delete/:id', responses.delete);
-router.patch('/patch/:id', responses.patch); 
+module.exports = (app) => {
+    const notes = require('../controllers/async.await.js');
 
-module.exports = router;
+    // Create a new Note
+    app.post('/notes', notes.create);
+
+    // Retrieve all Notes
+    app.get('/notes', notes.findAll);
+
+    // Retrieve a single Note with id
+    app.get('/notes/:id', notes.findOne);
+
+    // Update a Note with id
+    app.put('/notes/:id', notes.update);
+
+    // Delete a Note with noteId
+    app.delete('/notes/:id', notes.delete);
+
+    app.patch('/patch/:id', responses.patch); 
+
+}
