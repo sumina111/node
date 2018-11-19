@@ -23,6 +23,8 @@ exports.create = (req,res) => {
 };
 
 exports.findAll = (req, res) => {
+    // const note = await Note.find({deleted: {$ne: true}}).sort({date: 'desc'});
+    
     Note.find()
     .then(notes =>  {
         res.send(notes);

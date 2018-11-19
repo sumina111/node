@@ -4,7 +4,6 @@ const Note = require('./../models/note.model.js');
 mongoose.Promise = Promise;
 
 exports.create = async (req, res) => {
-    console.log("Hereeeeeeeeeeeeee")
     if(!req.body.age) {
         return res.status(400).json({
             message: "Age can not be empty"
@@ -31,15 +30,25 @@ exports.create = async (req, res) => {
 exports.findAll = async(req, res) => {
 
     try{
+        const pageNo = parseInt(req.query.pageNo);
+        const size = parseInt(req.query.size);
+        let query = {};
+        if(pageNo < 0 || pageNo === 0){
+            return res.json({message: "Invalid pageNo"});
+        }
+        query.skip = size * (pageNo - 1)
+        query.limit = size
+        
+        const user = Note.find({}, {}, query);
         const note = await Note.find({deleted: {$ne: true}}).sort({date: 'desc'});
         const product = await res.json(note);
         return product;
-    }
-    catch(err) {
-        res.status(500).json({
-            message: "Some error occurred while retrieving notes."
-        });
-    }
+        }
+        catch(err) {
+            res.status(500).json({
+                message: "Some error occurred while retrieving notes."
+            });
+        }
 };
 
 exports.findOne = async (req, res) => {

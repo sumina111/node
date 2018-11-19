@@ -25,6 +25,7 @@ app.get('/', (req, res) => {
 });
 
 require('./app/routes/note.routes.js')(app);
+require('./app/routes/asyncawait.js')(app);
 
 app.listen(3000, () => {console.log('port 3000')
 });
