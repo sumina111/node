@@ -1,4 +1,7 @@
+const mongoose = require('mongoose');
 const Note = require('./../models/note.model.js');
+
+mongoose.Promise = Promise;
 
 exports.create = async (req, res) => {
     if(!req.body.age) {
