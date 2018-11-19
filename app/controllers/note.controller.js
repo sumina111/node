@@ -16,7 +16,7 @@ exports.create = (req,res) => {
         res.send(data);
     }).catch(err => {
         res.status(500).send({
-            message: err.message || "error occured"
+            message: "success" || "error occured"
         });
     });
 };
@@ -27,7 +27,7 @@ exports.findAll = (req, res) => {
         res.send(notes);
     }).catch(err => {
         res.status(500).send({
-            message: err.message || "error occured"
+            message: "success" || "error occured"
         });
     });
 };
