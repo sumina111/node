@@ -19,6 +19,6 @@ module.exports = (app) => {
     // Delete a Note with noteId
     app.delete('/notes/:id', notes.delete);
 
-    app.patch('/patch/:id', responses.patch); 
+    app.patch('/patch/:id', notes.patch); 
 
 }

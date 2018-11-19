@@ -4,6 +4,7 @@ const Note = require('./../models/note.model.js');
 mongoose.Promise = Promise;
 
 exports.create = async (req, res) => {
+    console.log("Hereeeeeeeeeeeeee")
     if(!req.body.age) {
         return res.status(400).json({
             message: "Age can not be empty"
@@ -131,7 +132,7 @@ exports.patch = async (req, res) => {
     try {
 
         const note = await Note.findById(req.params.id);
-
+        responses
         if (req.params.id) {
             delete req.params.id;
         }

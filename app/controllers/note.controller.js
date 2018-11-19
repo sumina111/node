@@ -2,6 +2,7 @@ const Note = require('../models/note.model.js');
 
 
 exports.create = (req,res) => {
+    console.log("Hereeeeeeee123")
     if(!req.body.content){
         return res.status(400).send({
             message: "Note content cannot be empty"
