@@ -102,3 +102,24 @@ exports.delete = (req,res) => {
         });
     });
 };
+
+exports.patch = (req, res) => {
+
+    Note.findById(req.params.id)
+    .then(note => {
+        if (req.params.id) {
+            delete req.params.id;
+        }
+
+        note.deleted = true;
+
+        note.save();
+        res.json({ message: "Updated succesfully" });
+
+    }).catch(err => {
+        return res.status(500).json({
+            message: "Some error occurred while editing  the data."
+        });
+    });
+};
+   

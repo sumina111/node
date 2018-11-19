@@ -1,13 +1,16 @@
-module.exports = (app) => {
-    const notes = require('../controllers/note.controller.js');
-    
-    app.post('/notes', notes.create);
+const express = require("express");
+const router = express.Router();
 
-    app.get('/notes', notes.finaAll);
+const notes = require('../controllers/note.controller.js');
 
-    app.get('/notes/:noteId', notes.findOne);
+app.post('/notes', notes.create);
 
-    app.put('notes/:noteId', notes.update);
+app.get('/notes', notes.finaAll);
 
-    app.delete('/notes/:noteId', notes.delete);
-}
+app.get('/notes/:noteId', notes.findOne);
+
+app.put('notes/:noteId', notes.update);
+
+app.delete('/notes/:noteId', notes.delete);
+
+module.exports = router;
