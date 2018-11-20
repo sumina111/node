@@ -1,13 +1,13 @@
 let express = require('express');
-const bodyparser = require('body-parser');
+// const bodyparser = require('body-parser');
 let app = express();
 let router = express.Router();
 
-app.use(bodyparser.urlencoded({extended: true}))
+// app.use(bodyparser.urlencoded({extended: true}))
 
-app.use(bodyparser.json())
+app.use(express.json())
 
-const dbConfig = require('./config/database.config.js');
+const dbConfig = require('config.js');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
@@ -24,8 +24,7 @@ app.get('/', (req, res) => {
     res.send('port 3000');
 });
 
-require('./app/routes/route.asyncawait.js')(app);
-require('./app/routes/note.routes.js')(app);
+require('./route/index.js')(route);
 
 app.listen(3000, () => {console.log('port 3000')
 });
