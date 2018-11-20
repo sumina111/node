@@ -4,15 +4,15 @@ const Note = require('./../models/note.model.js');
 mongoose.Promise = Promise;
 
 exports.create = async (req, res) => {
-    if(!req.body.age) {
+    if(!req.body.content) {
         return res.status(400).json({
             message: "Age can not be empty"
         });
     }
 
     let note = new Note({
-        username: req.body.username || "Untitled Note", 
-        age: req.body.age,
+        title: req.body.title || "Untitled Note", 
+        content: req.body.content,
         deleted: req.body.deleted
     });
 
@@ -30,17 +30,14 @@ exports.create = async (req, res) => {
 exports.findAll = async(req, res) => {
 
     try{
-        console.log("Page", req.query);
         const pageNo = parseInt(req.query.pageNo);
         const size = parseInt(req.query.size);
         let query = {};
-        console.log("111111", query);
         if(pageNo < 0 || pageNo === 0){
             return res.json({message: "Invalid pageNo"});
         }
         query.skip = size * (pageNo - 1)
         query.limit = size
-        console.log("2222222", query);
         
         const user = Note.find({}, {}, query);
         const note = await Note.find({deleted: {$ne: true}}).sort({date: 'desc'});
@@ -82,15 +79,15 @@ exports.findOne = async (req, res) => {
 
 
 exports.update = async (req, res) => {
-    if(!req.body.age) {
+    if(!req.body.content) {
         return res.status(400).json({
             message: "age can not be empty"
         });
     }
     try {
         const note = await Note.findById(req.params.id);
-        note.username = await req.body.username;
-        note.age = await req.body.age;
+        note.title = await req.body.title;
+        note.content = await req.body.content;
 
         if(!note) {
             return res.status(404).json({
