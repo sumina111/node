@@ -36,11 +36,11 @@ exports.findAll = async(req, res) => {
         if(pageNo < 0 || pageNo === 0){
             return res.json({message: "Invalid pageNo"});
         }
-        query.skip = size * (pageNo - 1)
+        query.skip= size * (pageNo - 1)
         query.limit = size
         
         const user = Note.find({}, {}, query);
-        const note = await Note.find({deleted: {$ne: true}}).sort({date: 'desc'});
+        const note = await user.find({deleted: {$ne: true}}).sort({timestamps: 'desc'});
         const product = await res.json(note);
         return product;
         }
