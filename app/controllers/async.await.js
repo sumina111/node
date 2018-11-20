@@ -30,14 +30,17 @@ exports.create = async (req, res) => {
 exports.findAll = async(req, res) => {
 
     try{
+        console.log("Page", req.query);
         const pageNo = parseInt(req.query.pageNo);
         const size = parseInt(req.query.size);
         let query = {};
+        console.log("111111", query);
         if(pageNo < 0 || pageNo === 0){
             return res.json({message: "Invalid pageNo"});
         }
         query.skip = size * (pageNo - 1)
         query.limit = size
+        console.log("2222222", query);
         
         const user = Note.find({}, {}, query);
         const note = await Note.find({deleted: {$ne: true}}).sort({date: 'desc'});
