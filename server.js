@@ -22,9 +22,9 @@ mongoose.connect(dbConfig.url, {
 });
 
 
-// app.get('/', (req, res) => {
-    // res.render('port 3000');
-// });
+app.get('/', (req, res) => {
+    res.json({message: 'port 3000'});
+});
 
 
 app.listen(3000, () => {console.log('port 3000')
