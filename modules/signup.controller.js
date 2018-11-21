@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Form = require('./model.js')
-const bycrypt = require('bycrypt')
+const bcrypt = require('bcrypt')
 
 
 // exports.addData = async (res, req) => {

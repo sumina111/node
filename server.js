@@ -1,5 +1,7 @@
 let express = require('express');
 const bodyparser = require('body-parser');
+const bcrypt = require('bcrypt')
+
 let app = express();
 let router = express.Router();
 const config = require('./modules/config')
