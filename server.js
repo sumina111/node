@@ -1,20 +1,18 @@
 let express = require('express');
 const bodyparser = require('body-parser');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
 let app = express();
 let router = express.Router();
-const config = require('./modules/config')
-const route = require('./routes/index')
+
+const config = require('./modules/signup/config/config.js')
+const route = require('./routes/index.js')
+
 app.use(bodyparser.urlencoded({extended: true}))
 
-app.use(express.json())
-
-
-const dbConfig = require('./modules/config');
-const mongoose = require('mongoose');
-
-mongoose.Promise = global.Promise;
+app.use(express.json());
 
 mongoose.connect(dbConfig.url, {
     useNewUrlParser: true
