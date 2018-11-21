@@ -11,7 +11,7 @@ app.use(bodyparser.urlencoded({extended: true}))
 app.use(express.json())
 
 
-const dbConfig = require('config.js');
+const dbConfig = require('./modules/config');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
