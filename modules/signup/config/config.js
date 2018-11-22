@@ -1,2 +1,2 @@
-module.Promise = global.Promise
-module.exports = { url: 'mongodb://localhost:27017/dbNote'}
+mongoose.Promise = global.Promise
+mongoose.connect('mongodb://localhost:27017/site-auth')

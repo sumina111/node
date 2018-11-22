@@ -1,6 +1,7 @@
 const expressJwt = require('express-jwt');
 const config = require('./../config/config.js');
 const userService = require('./../model/model.js');
+const bcrypt = require('bcryptjs');
 
 module.exports = jwt;
 

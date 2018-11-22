@@ -1,19 +1,22 @@
-let express = require('express');
-const bodyparser = require('body-parser');
-const bcrypt = require('bcrypt');
+const express = require('express');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
+const bcrypt = require('bcrypt');
+const expressValidator = require('express-validator');
 
-let app = express();
-let router = express.Router();
+const { body,validationResult } = require('express-validator/check');
 
-const config = require('./modules/signup/config/config.js')
-const route = require('./routes/index.js')
+const app = express();
 
-app.use(bodyparser.urlencoded({extended: true}))
+const router = express.Router();
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(expressValidator());
 
+module.exports = {
+    User: require('./routes/index.js')
+}
 mongoose.connect(dbConfig.url, {
     useNewUrlParser: true
 }).then(() => {console.log('connected to db');
@@ -22,11 +25,10 @@ mongoose.connect(dbConfig.url, {
 });
 
 
-app.get('/', (req, res) => {
-    res.json({message: 'port 3000'});
-});
+// app.get('/', (req, res) => {
+//     res.render('port 3000');
+// });
 
 
 app.listen(3000, () => {console.log('port 3000')
 });
-
