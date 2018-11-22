@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const expressValidator = require('express-validator');
+const cors = require('cors');
 
 const { body,validationResult } = require('express-validator/check');
 
@@ -13,6 +14,9 @@ const router = express.Router();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(expressValidator());
+app.use(cors());
+app.use(jwt());
+app.use(errorhandler);
 
 module.exports = {
     User: require('./routes/index.js')

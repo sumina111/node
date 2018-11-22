@@ -1,22 +1,39 @@
-const expressJwt = require('express-jwt');
-const config = require('./../config/config.js');
-const userService = require('./../model/model.js');
+const express = require('express');
+const router = express.Router();
+const userService = require('./../service/service.js');
 
-module.exports = jwt;
-
-const jwt = () => {
-    const secret = config.secret;
-    return expressJwt({secret, isRevoked}).unless({
-        path: [
-
-        ]
-    });
+const authenticate = (req, res, next) => {
+    userService.authenticate(req.body)
+        .then(user => user ? res.json(user) : res.status(400).json({message: 'Username or password incorrect'}))
+        .catch(err => next(err));
 }
 
-const isRevoked = async(req, payload, done) => {
-    const user = await userService.getById(payload.sub);
-    if(!user){
-        return done(null, true);
-    }
-    done();
+const register = (req, res, next) => {
+    userService.create(req.body)
+    .then(() => res.json({}))
+    .catch(err => next(err));
+}
+
+const getAll = (req,res,next) => {
+    userService.create(req.body)
+    .then(() => res.json({}))
+    .catch(err => next(err));
+}
+
+const getCurrent = (req, res, next) => {
+    userService.getById(req.user.sub)
+    .then(user => user ? res.json(user) : res.sendStatus(404))
+    .catch(err => next(err));
+}
+
+const update = (req, res, next) => {
+    userService.update(req.params.id, req.body)
+    .then(() => res.json({}))
+    .catch(err => next(err));
+}
+
+const _delete = (req, res, next) => {
+    userService.delete(req.params.id)
+    .then(() => res.json({}))
+    .catch(err => next(err));
 }
