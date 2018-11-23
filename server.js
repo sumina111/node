@@ -1,11 +1,13 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const expressValidator = require('express-validator');
-const cors = require('cors');
+const require = NodeRequire
+const express = NodeRequire('express');
+const bodyParser = NodeRequire('body-parser');
+const mongoose = NodeRequire('mongoose');
+const bcrypt = NodeRequire('bcrypt');
+const expressValidator = NodeRequire('express-validator');
+const cors = NodeRequire('cors');
+const jwt = NodeRequire('express-jwt');
 
-const { body,validationResult } = require('express-validator/check');
+const { body,validationResult } = NodeRequire('express-validator/check');
 
 const app = express();
 
@@ -18,9 +20,12 @@ app.use(cors());
 app.use(jwt());
 app.use(errorhandler);
 
-module.exports = {
-    User: require('./routes/index.js')
-}
+routeHelper.init(app);
+
+
+// module.exports = {
+    // User: require('./routes/index.js')
+// }
 mongoose.connect(dbConfig.url, {
     useNewUrlParser: true
 }).then(() => {console.log('connected to db');

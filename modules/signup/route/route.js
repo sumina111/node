@@ -1,7 +1,8 @@
-const express = require('express')
+const require = NodeRequire
+const express = NodeRequire('express')
 const router = express.Router()
 
-const signup = require('./../controller/signup.controller.js');
+const signup = NodeRequire('./../controller/signup.controller.js');
 
 router.post('/authenticate', signup.authenticate);
 router.post('/register', signup.register);

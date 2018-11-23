@@ -1,6 +1,7 @@
-const express = require('express');
+const require = NodeRequire
+const express = NodeRequire('express');
 const router = express.Router();
-const userService = require('./../service/service.js');
+const userService = NodeRequire('./../service/service.js');
 
 const authenticate = (req, res, next) => {
     userService.authenticate(req.body)
@@ -35,5 +36,5 @@ const update = (req, res, next) => {
 const _delete = (req, res, next) => {
     userService.delete(req.params.id)
     .then(() => res.json({}))
-    .catch(err => next(err));
+    .catch(err => next(err))
 }

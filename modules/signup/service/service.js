@@ -21,7 +21,7 @@ const authenticate = async({username, password}) => {
             ...userWithoutHash,
             token
         };
-    }
+    };
 };
 
 const getAll = asycn() => {

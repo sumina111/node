@@ -1,6 +1,6 @@
-module.exports = erroehandler;
+module.exports = errorhandler;
 
-function erroehandler(err, req, res, next){
+function errorhandler(err, req, res, next){
     if (typeof (err) === 'string'){
         return res.status(400).json({message: err});
     }
