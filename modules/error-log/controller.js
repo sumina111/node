@@ -1,5 +1,6 @@
 module.exports = errorLog;
 
+const controller = require('./route.js')
 
 const initializer = (err,req, res, next) => {
     if(){
