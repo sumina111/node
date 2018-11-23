@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(expressValidator());
 app.use(cors());
 app.use(jwt());
-app.use(errorhandler);
+// app.use(errorhandler);
 
 routeHelper.init(app);
 
