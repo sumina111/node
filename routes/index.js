@@ -7,9 +7,10 @@ const errorLog = NodeRequire('./../modules/error-log/route.js')
 
 const app = express();
 
-express.init = (app) => {
-    app.use('/signup', signUp.router)
-    app.use('/error', errorLog.router)
-}
 
-// module.exports = router;
+((routerHelper) => {
+    routerHelper.init = (app) => {
+        app.use('/signup', signUp.router)
+        app.use('/error', errorLog.router)
+    }
+})(module.exports(routerHelper));
